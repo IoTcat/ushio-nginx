@@ -5,11 +5,15 @@ The is the Dockerfile for ushio-nginx
 
 ```shell
 docker run -d \
-  --name=unginx \
-  -p 9999:80 \
+  --name=nginx \
+  -p 9980:80 \
+  -p 9443:443
   -v /etc/nginx/nginx.conf:/usr/local/nginx/conf/nginx.conf \
   -v /etc/nginx/vhost/:/usr/local/nginx/conf/vhost/ \
-  -v /var/log/nginx/:/usr/local/nginx/logs/ \
-  ng
+  -v /var/log/nginx/:/var/log/nginx/ \
+  ushio-nginx
 ```
 
+## Advance Params
+ - User: nginx
+ - 
