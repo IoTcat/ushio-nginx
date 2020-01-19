@@ -6,6 +6,8 @@ docker run -d \
   -p 21515:21515 \
   -p 30034:30034 \
   -v /home/:/home/ \
-  -v /etc/nginx/:/usr/local/nginx/conf/ \
+  -v /etc/nginx/:/etc/nginx/ \
   -v /var/log/nginx/:/var/log/nginx/ \
+  -v /etc/letsencrypt/:/etc/letsencrypt/ \
+  -v /etc/ssl.yimian.xyz/:/etc/ssl.yimian.xyz/ \
   iotcat/ushio-nginx
