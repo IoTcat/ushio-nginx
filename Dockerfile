@@ -12,9 +12,13 @@ useradd -s /sbin/nologin -M nginx && \
 mkdir -p /var/tmp/nginx && \
 rm -rf /var/cache/yum/
 
-RUN wget http://nginx.org/download/nginx-1.15.9.tar.gz &&\
-tar -zxvf nginx-1.15.9.tar.gz && \
-cd nginx-1.15.9 && \
+RUN wget http://nginx.org/download/nginx-1.16.1.tar.gz &&\
+tar -zxvf nginx-1.16.1.tar.gz && \
+cd nginx-1.16.1 && \
+sed -i "s#\"NGINX\"#\"Ushio\"#" src/core/nginx.h && \
+sed -i "s#\"nginx/\"#\"Ushio/\"#" src/core/nginx.h && \
+sed -i "s#Server: nginx#Server: Ushio#" src/http/ngx_http_header_filter_module.c && \
+sed -i "s#\"<hr><center>nginx<\/center>\"#\"<hr><center>Ushio<\/center>\"#" src/http/ngx_http_special_response.c && \
 ./configure --prefix=/usr/local/nginx --sbin-path=/usr/local/nginx/sbin/nginx \
 	--conf-path=/usr/local/nginx/conf/nginx.conf --error-log-path=/var/log/nginx/error.log \
 	--http-log-path=/var/log/nginx/access.log --pid-path=/var/run/nginx/nginx.pid \
@@ -32,11 +36,13 @@ cd nginx-1.15.9 && \
 	--http-proxy-temp-path=/var/tmp/nginx/proxy --http-fastcgi-temp-path=/var/tmp/nginx/fcgi \
 	--http-uwsgi-temp-path=/var/tmp/nginx/uwsgi --http-scgi-temp-path=/var/tmp/nginx/scgi --with-pcre && \
 make -j 4 && make install && \
-cd / && rm -rf nginx-1.15.9 && \
-ls -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+cd / && rm -rf nginx-1.16.1 #&& \
+#yum remove -y wget
+#ls -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 
 ENV PATH $PATH:/usr/local/nginx/sbin
 WORKDIR /usr/local/nginx
 
 EXPOSE 80
+EXPOSE 443
 CMD ["nginx", "-g","daemon off;"]
