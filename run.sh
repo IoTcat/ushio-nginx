@@ -6,4 +6,4 @@ docker run -d \
   -v /etc/nginx/nginx.conf:/usr/local/nginx/conf/nginx.conf \
   -v /etc/nginx/vhost/:/usr/local/nginx/conf/vhost/ \
   -v /var/log/nginx/:/var/log/nginx/ \
-  ng:56 
+  ushio-nginx
