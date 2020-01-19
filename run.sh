@@ -1,6 +1,7 @@
 #!/bin/bash
 docker run -d \
   --name=nginx \
+  --restart=always \
   -p 80:80 \
   -p 443:443 \
   -p 21515:21515 \

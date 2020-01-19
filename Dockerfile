@@ -20,7 +20,7 @@ sed -i "s#\"nginx/\"#\"Ushio/\"#" src/core/nginx.h && \
 sed -i "s#Server: nginx#Server: Ushio#" src/http/ngx_http_header_filter_module.c && \
 sed -i "s#\"<hr><center>nginx<\/center>\"#\"<hr><center>Ushio<\/center>\"#" src/http/ngx_http_special_response.c && \
 ./configure --prefix=/usr/local/nginx --sbin-path=/usr/local/nginx/sbin/nginx \
---conf-path=/usr/local/nginx/conf/nginx.conf --error-log-path=/var/log/nginx/error.log \
+--conf-path=/etc/nginx/nginx.conf --error-log-path=/var/log/nginx/error.log \
 --http-log-path=/var/log/nginx/access.log --pid-path=/var/run/nginx/nginx.pid \
 --user=nginx --group=nginx --with-http_ssl_module --with-http_stub_status_module \
 --with-threads --with-file-aio --with-http_v2_module \
