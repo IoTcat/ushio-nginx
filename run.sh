@@ -5,7 +5,7 @@ docker run -d \
   -p 443:443 \
   -p 21515:21515 \
   -p 30034:30034 \
-  -v /etc/nginx/nginx.conf:/usr/local/nginx/conf/nginx.conf \
-  -v /etc/nginx/vhost/:/usr/local/nginx/conf/vhost/ \
+  -v /home/:/home/ \
+  -v /etc/nginx/:/usr/local/nginx/conf/ \
   -v /var/log/nginx/:/var/log/nginx/ \
   iotcat/ushio-nginx
