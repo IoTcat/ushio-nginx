@@ -2,6 +2,8 @@ FROM centos:7
 
 MAINTAINER iotcat (i@iotcat.me)
 
+COPY ini.sh /
+
 RUN yum -y install gcc gcc-c++ make \
 openssl-devel pcre-devel gd-devel \
 libxml2-devel libxslt-devel zlib-devel \
@@ -39,7 +41,8 @@ make -j 4 && make install && \
 cd / && rm -rf nginx-1.15.9 && \
 rm -rf nginx-1.15.9.tar.gz 
 
+
 ENV PATH $PATH:/usr/local/nginx/sbin
 WORKDIR /usr/local/nginx
-EXPOSE 80 443 21515 30034
-CMD ["nginx", "-g","daemon off;"]
+EXPOSE 80 443
+CMD chmod +x /ini.sh ; /ini.sh
