@@ -8,6 +8,7 @@ RUN yum -y install gcc gcc-c++ make \
 openssl-devel pcre-devel gd-devel \
 libxml2-devel libxslt-devel zlib-devel \
 gd-devel perl-ExtUtils-Embed \
+crontabs \
 iproute net-tools telnet wget curl && \
 yum clean all && \
 useradd -s /sbin/nologin -M nginx && \
